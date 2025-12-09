@@ -1,0 +1,48 @@
+domain: fintech_iam
+version: "2.3"
+sla_hours: 4
+
+policy_id: PRIVILEGED_OFFBOARDING
+title: "Privileged Access Offboarding - FinTech SOC"
+
+description: >
+  This policy defines the required steps to revoke privileged access
+  for a departing engineer in a FinTech environment. It covers IAM,
+  VPN, HSM keys, MFA devices, and SIEM logging for SOC audit purposes.
+
+steps:
+  - id: disable_cloud_role
+    description: "Disable Prod_Admin_Access_Write_Override and any related IAM roles."
+    category: iam
+    required: true
+
+  - id: revoke_vpn
+    description: "Revoke associated VPN certificates and profiles for the user."
+    category: network
+    required: true
+
+  - id: rotate_hsm_keys
+    description: "Rotate or revoke any HSM or signing keys tied to this user."
+    category: crypto
+    required: true
+
+  - id: revoke_mfa
+    description: "Revoke all MFA devices (hardware tokens and authenticator apps) bound to this identity."
+    category: auth
+    required: true
+
+  - id: siem_log
+    description: "Record all revocation actions in SIEM and attach the SOC ticket ID."
+    category: audit
+    required: true
+
+risk_rules:
+  - id: delayed_revocation
+    condition: "revocation_time_hours > sla_hours"
+    risk: "high"
+    message: "SLA breach for privileged offboarding. Immediate SOC review required."
+
+  - id: missing_siem
+    condition: "siem_log_recorded == false"
+    risk: "medium"
+    message: "No SIEM evidence recorded for this offboarding. Create SOC ticket."
