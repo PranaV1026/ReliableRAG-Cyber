@@ -5,3 +5,7 @@ numpy
 httpx
 pydantic
 python-dotenv
+openai
+sentence-transformers
+torch
+
