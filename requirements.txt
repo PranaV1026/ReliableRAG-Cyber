@@ -1,3 +1,15 @@
+# fastapi
+# uvicorn[standard]
+# pyyaml
+# numpy
+# httpx
+# pydantic
+# python-dotenv
+# openai
+# sentence-transformers
+# torch
+
+
 fastapi
 uvicorn[standard]
 pyyaml
@@ -5,7 +17,9 @@ numpy
 httpx
 pydantic
 python-dotenv
-openai
-sentence-transformers
+
+# Embeddings stack (pinned to compatible versions)
+sentence-transformers==2.2.2
+huggingface-hub==0.16.4
 torch
 

@@ -8,6 +8,8 @@ load_dotenv()
 OPENAI_API_KEY = None
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # <- offline embedding model name
+MODEL_PATH = "models/ggml-gpt4all-j-v1.3-groovy.bin"
+
 
 if OPENAI_API_KEY is None:
     # Don't crash, but warn in console
