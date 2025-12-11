@@ -11,15 +11,14 @@
 
 
 fastapi
-uvicorn[standard]
-pyyaml
-numpy
-httpx
-pydantic
-python-dotenv
-
-# Embeddings stack (pinned to compatible versions)
+uvicorn
+numpy<2.0
+scikit-learn<1.4
 sentence-transformers==2.2.2
-huggingface-hub==0.16.4
-torch
+pydantic
+pydantic-core
+requests
+python-dotenv
+pyyaml
+
 
